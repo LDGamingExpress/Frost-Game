@@ -1,0 +1,53 @@
+[gd_scene load_steps=9 format=3 uid="uid://cetyhqh542ot2"]
+
+[ext_resource type="Script" path="res://PlayerScript.gd" id="1_373f7"]
+[ext_resource type="Script" path="res://PlayerCamera.gd" id="2_dmxii"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hj2g2"]
+radius = 0.315908
+height = 1.89945
+
+[sub_resource type="Curve" id="Curve_mkgxy"]
+_data = [Vector2(0, 0.769231), 0.0, 2.52747, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_kgij0"]
+curve = SubResource("Curve_mkgxy")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_b6gup"]
+emission_shape_offset = Vector3(0, 3, 0)
+emission_shape_scale = Vector3(20, 5, 20)
+emission_shape = 1
+emission_sphere_radius = 1.0
+scale_curve = SubResource("CurveTexture_kgij0")
+turbulence_enabled = true
+collision_mode = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x8hyn"]
+transparency = 1
+albedo_color = Color(0.907942, 0.907942, 0.907942, 1)
+metallic = 0.12
+metallic_specular = 0.69
+
+[sub_resource type="SphereMesh" id="SphereMesh_pecle"]
+material = SubResource("StandardMaterial3D_x8hyn")
+radius = 0.05
+height = 0.1
+
+[node name="Player" type="CharacterBody3D"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+script = ExtResource("1_373f7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_hj2g2")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.575372, 0)
+script = ExtResource("2_dmxii")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+amount = 40
+lifetime = 3.0
+randomness = 0.17
+process_material = SubResource("ParticleProcessMaterial_b6gup")
+draw_pass_1 = SubResource("SphereMesh_pecle")
