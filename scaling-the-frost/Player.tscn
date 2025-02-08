@@ -4,8 +4,8 @@
 [ext_resource type="Script" path="res://PlayerCamera.gd" id="2_dmxii"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hj2g2"]
-radius = 0.315908
-height = 1.89945
+radius = 0.25
+height = 1.75
 
 [sub_resource type="Curve" id="Curve_mkgxy"]
 _data = [Vector2(0, 0.769231), 0.0, 2.52747, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -46,7 +46,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.575372, 0)
 script = ExtResource("2_dmxii")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
-amount = 40
+amount = 50
 lifetime = 3.0
 randomness = 0.17
 process_material = SubResource("ParticleProcessMaterial_b6gup")
