@@ -3,6 +3,7 @@ extends CharacterBody3D
 
 const SPEED = 3.0
 const JUMP_VELOCITY = 4.5
+var push_force = 2.0
 
 func _input(event): # Checks for input
 	if event is InputEventMouseMotion: # Checks if the input is the mouse moving
@@ -29,3 +30,7 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
+	for i in get_slide_collision_count():
+		var c = get_slide_collision(i)
+		if c.get_collider() is RigidBody3D:
+			c.get_collider().apply_central_impulse(-c.get_normal() * push_force)
