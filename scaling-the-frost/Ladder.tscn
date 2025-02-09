@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://dbo8rvfkaerm1"]
+
+[ext_resource type="ArrayMesh" uid="uid://b4ujbxcq17xmv" path="res://Models/Ladder.res" id="1_2cbhn"]
+[ext_resource type="Script" path="res://LadderDetecter.gd" id="2_cru57"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_64nga"]
+points = PackedVector3Array(-0.445543, -8.35107, -2.48064, 0.449314, 8.35107, 2.59021, 0.449314, 9.54514, 2.2919, -0.445543, 8.35107, 2.59021, 0.449314, -9.54514, 2.2919, 0.449314, 8.35107, -2.48064, -0.445543, 9.54514, -2.18233, -0.445543, -8.35107, 2.59021, 0.449314, -9.54514, -2.18233, -0.445543, -9.54514, 2.2919, -0.445543, 9.54514, 2.2919, 0.449314, 9.54514, -2.18233, -0.445543, -9.54514, -2.18233, -0.445543, 8.35107, -2.48064, 0.449314, -8.35107, -2.48064, 0.449314, -8.35107, 2.59021)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6iblo"]
+size = Vector3(5, 18, 5)
+
+[node name="Ladder" type="MeshInstance3D"]
+mesh = ExtResource("1_2cbhn")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_64nga")
+
+[node name="LadderArea" type="Area3D" parent="."]
+script = ExtResource("2_cru57")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LadderArea"]
+shape = SubResource("BoxShape3D_6iblo")
+
+[connection signal="body_entered" from="LadderArea" to="LadderArea" method="_on_body_entered"]
+[connection signal="body_exited" from="LadderArea" to="LadderArea" method="_on_body_exited"]

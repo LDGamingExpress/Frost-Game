@@ -1,0 +1,66 @@
+[gd_scene load_steps=11 format=3 uid="uid://c17bx1ykkxiqw"]
+
+[ext_resource type="ArrayMesh" uid="uid://dr0xq2c21vk57" path="res://Models/Torch.res" id="1_qdwov"]
+
+[sub_resource type="Gradient" id="Gradient_3gx7t"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_abml3"]
+gradient = SubResource("Gradient_3gx7t")
+
+[sub_resource type="Curve" id="Curve_fg2ik"]
+min_value = -1.0
+_data = [Vector2(0, 1), 0.0, 8.68531, 0, 0, Vector2(1, -0.274725), -9.79881, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_kqmhc"]
+curve = SubResource("Curve_fg2ik")
+
+[sub_resource type="Curve" id="Curve_porpp"]
+_data = [Vector2(0, 1), 0.0, 6.49922, 0, 0, Vector2(1, 0), -4.48352, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_obha2"]
+curve = SubResource("Curve_porpp")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xi036"]
+particle_flag_rotate_y = true
+angle_min = -199.4
+angle_max = 199.4
+velocity_pivot = Vector3(0, 1, 0)
+spread = 77.53
+angular_velocity_min = -20.0
+angular_velocity_max = 20.0
+gravity = Vector3(0, 4, 0)
+scale_curve = SubResource("CurveTexture_obha2")
+color = Color(1, 1, 0.392157, 1)
+color_ramp = SubResource("GradientTexture1D_abml3")
+hue_variation_curve = SubResource("CurveTexture_kqmhc")
+turbulence_enabled = true
+collision_mode = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xnp1i"]
+transparency = 1
+albedo_color = Color(1, 0.666667, 0.317647, 1)
+metallic_specular = 0.89
+grow_amount = 0.01
+
+[sub_resource type="BoxMesh" id="BoxMesh_dmu31"]
+material = SubResource("StandardMaterial3D_xnp1i")
+size = Vector3(0.05, 0.05, 0.05)
+
+[node name="Torch" type="MeshInstance3D"]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0, 0)
+mesh = ExtResource("1_qdwov")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1.78423, 0, 0, 0, 1, 0, 3.47559, 0)
+lifetime = 0.8
+process_material = SubResource("ParticleProcessMaterial_xi036")
+draw_pass_1 = SubResource("BoxMesh_dmu31")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(6.66667, 0, 0, 0, 6.66667, 0, 0, 0, 6.66667, 0, 3.82943, 0)
+light_color = Color(1, 1, 0.384314, 1)
+light_energy = 2.939
+light_indirect_energy = 3.586
