@@ -5,18 +5,47 @@ const SPEED = 3.0
 const JUMP_VELOCITY = 3.5
 var push_force = 2.0
 var OnLadder = false
+var Reading = false
+var Holding = false
+var HoldObj = null
+var JustDropped = false
 
 func _input(event): # Checks for input
 	if event is InputEventMouseMotion: # Checks if the input is the mouse moving
 		rotate(Vector3.UP, -event.relative.x * 0.002) # Rotates the player horizontally with the mouse
 
 func _physics_process(delta: float) -> void:
-	# Add the gravity.
+	JustDropped = false
+	if Holding == true:
+		HoldObj.global_position = $Camera3D.global_position - 1*$Camera3D.get_global_transform().basis.z
+		HoldObj.linear_velocity = Vector3(0,-1,0)
+		#print(position)
+		#print(HoldObj.position)
+		#print("t")
+		if Input.is_action_just_pressed("Use"):
+			Holding = false
+			HoldObj = null
+			JustDropped = true
+	
 	if $Camera3D/RayCast3D.is_colliding():
 		if $Camera3D/RayCast3D.get_collider().is_in_group("Notes"):
-			$Camera3D/CanvasLayer/NoteLabel.visible = true
+			$Camera3D/CanvasLayer/VBoxContainer/NoteLabel.visible = true
 		else:
-			$Camera3D/CanvasLayer/NoteLabel.visible = false
+			$Camera3D/CanvasLayer/VBoxContainer/NoteLabel.visible = false
+		if $Camera3D/RayCast3D.get_collider().is_in_group("Holdable"):
+			if Holding == false:
+				$Camera3D/CanvasLayer/VBoxContainer/HoldLabel.text = "Press E to Pick Up Object"
+				$Camera3D/CanvasLayer/VBoxContainer/HoldLabel.visible = true
+				if Input.is_action_just_pressed("Use") and JustDropped == false:
+					HoldObj = $Camera3D/RayCast3D.get_collider()
+					Holding = true
+			else:
+				$Camera3D/CanvasLayer/VBoxContainer/HoldLabel.text = "Press E to Drop Object"
+		else:
+			$Camera3D/CanvasLayer/VBoxContainer/HoldLabel.visible = false
+	else:
+		$Camera3D/CanvasLayer/VBoxContainer/HoldLabel.visible = false
+		$Camera3D/CanvasLayer/VBoxContainer/NoteLabel.visible = false
 	
 	if not is_on_floor():
 		velocity += get_gravity() * delta
