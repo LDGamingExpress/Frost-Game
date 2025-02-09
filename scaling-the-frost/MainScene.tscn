@@ -33,12 +33,12 @@ ground_bottom_color = Color(0.500792, 0.49344, 0.515943, 1)
 ground_horizon_color = Color(0.742795, 0.750589, 0.762896, 1)
 sun_angle_max = 43.33
 
-[sub_resource type="Sky" id="Sky_ebokh"]
+[sub_resource type="Sky" id="Sky_2pmhy"]
 sky_material = SubResource("ProceduralSkyMaterial_dye24")
 
 [sub_resource type="Environment" id="Environment_qnfav"]
 background_mode = 2
-sky = SubResource("Sky_ebokh")
+sky = SubResource("Sky_2pmhy")
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.1763
 volumetric_fog_emission = Color(0.625597, 0.625597, 0.625597, 1)
@@ -197,3 +197,39 @@ mesh = ExtResource("11_16asr")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RockWall/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_mvwtk")
+
+[node name="SnowyTree2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 6.51462, -1.13542, -10.1277)
+mesh = ExtResource("7_ju2dt")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="SnowyTree2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SnowyTree2/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_jlspj")
+
+[node name="SnowyTree3" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 7.32782, -1.13542, -7.40757)
+mesh = ExtResource("7_ju2dt")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="SnowyTree3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SnowyTree3/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_jlspj")
+
+[node name="SnowyTree4" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 3.18267, -1.13542, -12.6076)
+mesh = ExtResource("7_ju2dt")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="SnowyTree4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SnowyTree4/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_jlspj")
+
+[node name="SnowyTree5" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 1.63966, -1.13542, -17.1661)
+mesh = ExtResource("7_ju2dt")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="SnowyTree5"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SnowyTree5/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_jlspj")

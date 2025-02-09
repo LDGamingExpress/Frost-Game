@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 
 const SPEED = 3.0
-const JUMP_VELOCITY = 4.5
+const JUMP_VELOCITY = 3.5
 var push_force = 2.0
 
 func _input(event): # Checks for input
