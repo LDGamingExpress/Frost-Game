@@ -1,7 +1,9 @@
 extends CharacterBody3D
 
 
+const HEALTH = 100
 const SPEED = 3.0
+<<<<<<< Updated upstream
 const JUMP_VELOCITY = 3.5
 var push_force = 2.0
 var OnLadder = false
@@ -9,6 +11,11 @@ var Reading = false
 var Holding = false
 var HoldObj = null
 var JustDropped = false
+=======
+const JUMP_VELOCITY = 4.5
+const TEMPERATURE = 0
+const ALIVE = true
+>>>>>>> Stashed changes
 
 func _input(event): # Checks for input
 	if event is InputEventMouseMotion: # Checks if the input is the mouse moving
@@ -51,7 +58,7 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 
 	# Handle jump.
-	if Input.is_action_just_pressed("Jump") and is_on_floor():
+	if Input.is_action_just_pressed("Jump") and is_on_floor() and ALIVE == true:
 		velocity.y = JUMP_VELOCITY
 	if OnLadder == true:
 		if Input.is_action_pressed("Forward"):
@@ -63,15 +70,33 @@ func _physics_process(delta: float) -> void:
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir := Input.get_vector("Left", "Right", "Forward", "Backward")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+	if ALIVE == true:
+		if direction:
+			velocity.x = direction.x * SPEED
+			velocity.z = direction.z * SPEED
+		else:
+			velocity.x = move_toward(velocity.x, 0, SPEED)
+			velocity.z = move_toward(velocity.z, 0, SPEED)
+		
 
 	move_and_slide()
+<<<<<<< Updated upstream
 	for i in get_slide_collision_count():
 		var c = get_slide_collision(i)
 		if c.get_collider() is RigidBody3D:
 			c.get_collider().apply_central_impulse(-c.get_normal() * push_force)
+=======
+	# await get_tree().create_timer(1).timeout
+	
+
+func temperature():
+	await get_tree().create_timer(1).timeout
+	Health -= (1/3) * (TEMPERATURE * -1)
+	if Health <= 0:
+		ALIVE = false
+		
+func ready():
+	temperature()
+		
+		
+>>>>>>> Stashed changes
