@@ -3,7 +3,7 @@ extends CharacterBody3D
 
 var Health = 100
 const SPEED = 3.0
-const JUMP_VELOCITY = 3.5
+const JUMP_VELOCITY = 4
 var push_force = 2.0
 var OnLadder = false
 var Reading = false
