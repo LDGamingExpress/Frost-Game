@@ -1,0 +1,61 @@
+[gd_scene load_steps=11 format=3 uid="uid://yu85p7jnes62"]
+
+[ext_resource type="Script" path="res://LadderBuildScript.gd" id="1_elguv"]
+[ext_resource type="ArrayMesh" uid="uid://xugolfvx2r1h" path="res://Models/WoodPile.res" id="1_niqfa"]
+[ext_resource type="PackedScene" uid="uid://dbo8rvfkaerm1" path="res://Ladder.tscn" id="3_huf06"]
+[ext_resource type="FontFile" uid="uid://ba25p5mocgy6b" path="res://Textures/Kenney Pixel.ttf" id="4_2kjue"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_brrvn"]
+size = Vector3(0.8, 1, 0.8)
+
+[sub_resource type="Curve" id="Curve_hsd8l"]
+_data = [Vector2(0, 0.494505), 0.0, 4.41159, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_sv4dk"]
+curve = SubResource("Curve_hsd8l")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_usb0j"]
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 4.0
+initial_velocity_max = 7.0
+scale_curve = SubResource("CurveTexture_sv4dk")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ccdf"]
+albedo_color = Color(0.567698, 0.300707, 0.126692, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_cwg2k"]
+material = SubResource("StandardMaterial3D_2ccdf")
+size = Vector3(0.1, 0.1, 0.1)
+
+[node name="LadderBuildable" type="Node3D"]
+script = ExtResource("1_elguv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0, 0)
+mesh = ExtResource("1_niqfa")
+
+[node name="BuildArea" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BuildArea"]
+shape = SubResource("BoxShape3D_brrvn")
+
+[node name="Ladder" parent="." instance=ExtResource("3_huf06")]
+transform = Transform3D(0.145925, 0.0347265, 0, -0.0347265, 0.145925, 0, 0, 0, 0.15, 0, 1.27378, 0)
+
+[node name="BuildParticles" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 12
+one_shot = true
+explosiveness = 0.98
+process_material = SubResource("ParticleProcessMaterial_usb0j")
+draw_pass_1 = SubResource("BoxMesh_cwg2k")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.373345, 0)
+billboard = 1
+text = "3 Logs Needed
+For Ladder"
+font = ExtResource("4_2kjue")
+
+[connection signal="body_entered" from="BuildArea" to="." method="_on_build_area_body_entered"]

@@ -20,6 +20,11 @@ func _input(event): # Checks for input
 func _physics_process(delta: float) -> void:
 	JustDropped = false
 	if Holding == true:
+		if HoldObj == null:
+			Holding = false
+			HoldObj = null
+			JustDropped = true
+	if Holding == true:
 		HoldObj.global_position = $Camera3D.global_position - 1*$Camera3D.get_global_transform().basis.z
 		HoldObj.linear_velocity = Vector3(0,-1,0)
 		HoldObj.angular_velocity = Vector3(0,0,0)
@@ -36,7 +41,7 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_just_pressed("Use"):
 			Reading = false
 			$Camera3D/CanvasLayer/NoteContents.visible = false
-	if $Camera3D/RayCast3D.is_colliding():
+	if $Camera3D/RayCast3D.is_colliding() and $Camera3D/RayCast3D.get_collider() != null:
 		if $Camera3D/RayCast3D.get_collider().is_in_group("Notes"):
 			$Camera3D/CanvasLayer/VBoxContainer/NoteLabel.visible = true
 			if Reading == false:

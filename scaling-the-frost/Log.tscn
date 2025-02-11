@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bg1prhe1i8fi1"]
 
-[ext_resource type="ArrayMesh" uid="uid://tpumxbyqtp6i" path="res://Models/Log.res" id="1_cxqrr"]
+[ext_resource type="ArrayMesh" uid="uid://b64is6rrft5ol" path="res://Models/Log.res" id="1_cxqrr"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_vkvsg"]
 points = PackedVector3Array(-0.701204, -1, -1.30246, -1.00004, -1, -1.00004, -0.701204, 1, -1.30246, 0.700949, -1, -1.30246, -1.30246, -1, -0.644088, -1.00004, 1, -1.00004, 0.700949, 1, -1.30246, 0.99979, -1, -1.00004, -1.30246, 1, -0.644088, -1.30246, -1, 0.643833, 0.99979, 1, -1.00004, 1.30246, -1, -0.644088, -1.30246, 1, 0.643833, -1.00004, -1, 0.99979, 1.30246, 1, -0.644088, 1.30246, -1, 0.643833, -1.00004, 1, 0.99979, -0.701204, -1, 1.30246, 1.30246, 1, 0.643833, 0.99979, -1, 0.99979, -0.701204, 1, 1.30246, 0.700949, -1, 1.30246, 0.99979, 1, 0.99979, 0.700949, 1, 1.30246)

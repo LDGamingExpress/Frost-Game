@@ -3,7 +3,7 @@
 [ext_resource type="ArrayMesh" uid="uid://b4w04f10kwt07" path="res://Models/Map.res" id="1_rycy6"]
 [ext_resource type="PackedScene" uid="uid://cetyhqh542ot2" path="res://Player.tscn" id="2_xrlk0"]
 [ext_resource type="ArrayMesh" uid="uid://dnj2ymb0310hg" path="res://Models/SnowTree1Mesh.res" id="3_2epls"]
-[ext_resource type="ArrayMesh" uid="uid://dfcoe6hc72sau" path="res://Models/Sign.res" id="4_opjjw"]
+[ext_resource type="ArrayMesh" uid="uid://d0xfqycv7r5xm" path="res://Models/Sign.res" id="4_opjjw"]
 [ext_resource type="ArrayMesh" uid="uid://d1ejpy40qfyfp" path="res://Models/DeadTree1Mesh.res" id="5_s668a"]
 [ext_resource type="ArrayMesh" uid="uid://cnmoy28telxip" path="res://Models/DeadTree2Mesh.res" id="6_tevru"]
 [ext_resource type="ArrayMesh" uid="uid://d2ahqskfd0q3l" path="res://Models/GermanHouse2Mesh.res" id="7_i2iu3"]
