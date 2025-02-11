@@ -305,6 +305,7 @@ shape = SubResource("ConvexPolygonShape3D_j2act")
 
 [node name="Note" type="RigidBody3D" parent="Props" groups=["Notes"]]
 transform = Transform3D(0.337161, 0, 0.941447, 0, 1, 0, -0.941447, 0, 0.337161, -54.69, 2.60791, -20.3831)
+metadata/Note = "Dear Father,\\n\\nI cannot stand to remain here\\nany longer. The blizzard has\\ngrown too fierce. I am\\nreturning back to Aachen soon,\\nand I hope you join us once\\nyou give up your foolish quest\\nto find the staff at the peak.\\n\\nSincerely,\\nMaria"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Props/Note"]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)

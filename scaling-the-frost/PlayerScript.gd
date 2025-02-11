@@ -1,9 +1,8 @@
 extends CharacterBody3D
 
 
-const HEALTH = 100
+var Health = 100
 const SPEED = 3.0
-<<<<<<< Updated upstream
 const JUMP_VELOCITY = 3.5
 var push_force = 2.0
 var OnLadder = false
@@ -11,11 +10,8 @@ var Reading = false
 var Holding = false
 var HoldObj = null
 var JustDropped = false
-=======
-const JUMP_VELOCITY = 4.5
-const TEMPERATURE = 0
-const ALIVE = true
->>>>>>> Stashed changes
+var TEMPERATURE = 0
+var ALIVE = true
 
 func _input(event): # Checks for input
 	if event is InputEventMouseMotion: # Checks if the input is the mouse moving
@@ -26,6 +22,7 @@ func _physics_process(delta: float) -> void:
 	if Holding == true:
 		HoldObj.global_position = $Camera3D.global_position - 1*$Camera3D.get_global_transform().basis.z
 		HoldObj.linear_velocity = Vector3(0,-1,0)
+		HoldObj.angular_velocity = Vector3(0,0,0)
 		#print(position)
 		#print(HoldObj.position)
 		#print("t")
@@ -33,11 +30,27 @@ func _physics_process(delta: float) -> void:
 			Holding = false
 			HoldObj = null
 			JustDropped = true
-	
+	if Reading == true:
+		$Camera3D/CanvasLayer/VBoxContainer/NoteLabel.text = "Press E to Discard Note"
+		$Camera3D/CanvasLayer/VBoxContainer/NoteLabel.visible = true
+		if Input.is_action_just_pressed("Use"):
+			Reading = false
+			$Camera3D/CanvasLayer/NoteContents.visible = false
 	if $Camera3D/RayCast3D.is_colliding():
 		if $Camera3D/RayCast3D.get_collider().is_in_group("Notes"):
 			$Camera3D/CanvasLayer/VBoxContainer/NoteLabel.visible = true
-		else:
+			if Reading == false:
+				$Camera3D/CanvasLayer/VBoxContainer/NoteLabel.text = "Press E to Read Note"
+				if Input.is_action_just_pressed("Use"):
+					Reading = true
+					$Camera3D/CanvasLayer/NoteContents.visible = true
+					$Camera3D/CanvasLayer/NoteContents/Label.text = $Camera3D/RayCast3D.get_collider().get_meta("Note").replace("\\n","\n")
+			#else:
+			#	$Camera3D/CanvasLayer/VBoxContainer/NoteLabel.text = "Press E to Discard Note"
+			#	if Input.is_action_just_pressed("Use"):
+			#		Reading = false
+			#		$Camera3D/CanvasLayer/NoteContents.visible = false
+		elif Reading == false:
 			$Camera3D/CanvasLayer/VBoxContainer/NoteLabel.visible = false
 		if $Camera3D/RayCast3D.get_collider().is_in_group("Holdable"):
 			if Holding == false:
@@ -52,7 +65,8 @@ func _physics_process(delta: float) -> void:
 			$Camera3D/CanvasLayer/VBoxContainer/HoldLabel.visible = false
 	else:
 		$Camera3D/CanvasLayer/VBoxContainer/HoldLabel.visible = false
-		$Camera3D/CanvasLayer/VBoxContainer/NoteLabel.visible = false
+		if Reading == false:
+			$Camera3D/CanvasLayer/VBoxContainer/NoteLabel.visible = false
 	
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -80,12 +94,10 @@ func _physics_process(delta: float) -> void:
 		
 
 	move_and_slide()
-<<<<<<< Updated upstream
 	for i in get_slide_collision_count():
 		var c = get_slide_collision(i)
 		if c.get_collider() is RigidBody3D:
 			c.get_collider().apply_central_impulse(-c.get_normal() * push_force)
-=======
 	# await get_tree().create_timer(1).timeout
 	
 
@@ -99,4 +111,3 @@ func ready():
 	temperature()
 		
 		
->>>>>>> Stashed changes

@@ -1,0 +1,10 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://di13i5mjc1r5e"]
+
+[ext_resource type="FontFile" uid="uid://ba25p5mocgy6b" path="res://Textures/Kenney Pixel.ttf" id="1_stfjg"]
+
+[resource]
+default_font = ExtResource("1_stfjg")
+default_font_size = 32
+Label/colors/font_color = Color(1, 1, 1, 1)
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
+Label/constants/outline_size = 3

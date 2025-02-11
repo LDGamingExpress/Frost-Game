@@ -2,15 +2,24 @@
 
 [ext_resource type="Script" path="res://PlayerScript.gd" id="1_373f7"]
 [ext_resource type="Script" path="res://PlayerCamera.gd" id="2_dmxii"]
-[ext_resource type="FontFile" uid="uid://ba25p5mocgy6b" path="res://Textures/Kenney Pixel.ttf" id="3_o7xum"]
+[ext_resource type="Theme" uid="uid://di13i5mjc1r5e" path="res://MainTheme.tres" id="3_df5y3"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hj2g2"]
 radius = 0.25
 height = 1.75
 
-[sub_resource type="Theme" id="Theme_5fc1l"]
-default_font = ExtResource("3_o7xum")
-default_font_size = 32
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wblqj"]
+bg_color = Color(0.942823, 0.942823, 0.942823, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.340339, 0.340339, 0.340339, 1)
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [sub_resource type="Curve" id="Curve_a3yyi"]
 min_value = -360.0
@@ -77,6 +86,7 @@ target_position = Vector3(0, 0, -1)
 [node name="CanvasLayer" type="CanvasLayer" parent="Camera3D"]
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Camera3D/CanvasLayer"]
+texture_filter = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -89,18 +99,45 @@ grow_horizontal = 2
 grow_vertical = 0
 
 [node name="NoteLabel" type="Label" parent="Camera3D/CanvasLayer/VBoxContainer"]
-visible = false
 layout_mode = 2
-theme = SubResource("Theme_5fc1l")
+theme = ExtResource("3_df5y3")
 text = "Press E to Read Note"
 horizontal_alignment = 1
 
 [node name="HoldLabel" type="Label" parent="Camera3D/CanvasLayer/VBoxContainer"]
 visible = false
 layout_mode = 2
-theme = SubResource("Theme_5fc1l")
+theme = ExtResource("3_df5y3")
 text = "Press E to Pick Up Object"
 horizontal_alignment = 1
+
+[node name="NoteContents" type="PanelContainer" parent="Camera3D/CanvasLayer"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -104.0
+offset_right = 104.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wblqj")
+
+[node name="Label" type="Label" parent="Camera3D/CanvasLayer/NoteContents"]
+layout_mode = 2
+theme = ExtResource("3_df5y3")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 0
+text = "Dear Father,
+
+Blah Blah
+Blah Blah
+Blah Blah
+Blah Blah
+
+Sincerely,
+Emily"
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 amount = 80
