@@ -4,7 +4,7 @@
 
 [resource]
 default_font = ExtResource("1_stfjg")
-default_font_size = 32
+default_font_size = 64
 Label/colors/font_color = Color(1, 1, 1, 1)
 Label/colors/font_outline_color = Color(0, 0, 0, 1)
 Label/constants/outline_size = 3

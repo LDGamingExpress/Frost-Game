@@ -1,8 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://cetyhqh542ot2"]
+[gd_scene load_steps=16 format=3 uid="uid://cetyhqh542ot2"]
 
 [ext_resource type="Script" path="res://PlayerScript.gd" id="1_373f7"]
 [ext_resource type="Script" path="res://PlayerCamera.gd" id="2_dmxii"]
 [ext_resource type="Theme" uid="uid://di13i5mjc1r5e" path="res://MainTheme.tres" id="3_df5y3"]
+[ext_resource type="AudioStream" uid="uid://c8yojjel2unua" path="res://SFX/WindSounds.mp3" id="4_dtf86"]
+[ext_resource type="AudioStream" uid="uid://ouprhj6wc3f6" path="res://SFX/EditedSnowFootsteps.mp3" id="5_pxts6"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hj2g2"]
 radius = 0.25
@@ -145,3 +147,22 @@ lifetime = 3.0
 randomness = 0.17
 process_material = SubResource("ParticleProcessMaterial_b6gup")
 draw_pass_1 = SubResource("BoxMesh_g51bu")
+
+[node name="AudioListener3D" type="AudioListener3D" parent="."]
+
+[node name="BackgroundSFX" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_dtf86")
+pitch_scale = 1.1
+autoplay = true
+panning_strength = 0.8
+
+[node name="Footsteps" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("5_pxts6")
+max_db = 0.714
+panning_strength = 1.4
+
+[node name="FootRay" type="RayCast3D" parent="."]
+target_position = Vector3(0, -1.1, 0)
+
+[connection signal="finished" from="BackgroundSFX" to="." method="_on_background_sfx_finished"]
+[connection signal="finished" from="Footsteps" to="." method="_on_footsteps_finished"]

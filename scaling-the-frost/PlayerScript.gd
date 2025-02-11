@@ -10,8 +10,10 @@ var Reading = false
 var Holding = false
 var HoldObj = null
 var JustDropped = false
+var JustRead = false
 var TEMPERATURE = 0
 var ALIVE = true
+var Walking = false
 
 func _input(event): # Checks for input
 	if event is InputEventMouseMotion: # Checks if the input is the mouse moving
@@ -19,6 +21,7 @@ func _input(event): # Checks for input
 
 func _physics_process(delta: float) -> void:
 	JustDropped = false
+	JustRead = false
 	if Holding == true:
 		if HoldObj == null:
 			Holding = false
@@ -41,12 +44,13 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_just_pressed("Use"):
 			Reading = false
 			$Camera3D/CanvasLayer/NoteContents.visible = false
+			JustRead = true
 	if $Camera3D/RayCast3D.is_colliding() and $Camera3D/RayCast3D.get_collider() != null:
 		if $Camera3D/RayCast3D.get_collider().is_in_group("Notes"):
 			$Camera3D/CanvasLayer/VBoxContainer/NoteLabel.visible = true
 			if Reading == false:
 				$Camera3D/CanvasLayer/VBoxContainer/NoteLabel.text = "Press E to Read Note"
-				if Input.is_action_just_pressed("Use"):
+				if Input.is_action_just_pressed("Use") and JustRead == false:
 					Reading = true
 					$Camera3D/CanvasLayer/NoteContents.visible = true
 					$Camera3D/CanvasLayer/NoteContents/Label.text = $Camera3D/RayCast3D.get_collider().get_meta("Note").replace("\\n","\n")
@@ -97,7 +101,13 @@ func _physics_process(delta: float) -> void:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 			velocity.z = move_toward(velocity.z, 0, SPEED)
 		
-
+	if (abs(velocity.x) > 0 or abs(velocity.z) > 0) and $FootRay.is_colliding():
+		Walking = true
+		if $Footsteps.playing != true:
+			$Footsteps.play()
+	else:
+		Walking = false
+		$Footsteps.playing = false
 	move_and_slide()
 	for i in get_slide_collision_count():
 		var c = get_slide_collision(i)
@@ -116,3 +126,12 @@ func ready():
 	temperature()
 		
 		
+
+
+func _on_footsteps_finished() -> void:
+	if Walking == true:
+		$Footsteps.play()
+
+
+func _on_background_sfx_finished() -> void:
+	$BackgroundSFX.play()

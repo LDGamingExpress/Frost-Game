@@ -3,7 +3,8 @@
 [ext_resource type="ArrayMesh" uid="uid://dr0xq2c21vk57" path="res://Models/Torch.res" id="1_qdwov"]
 
 [sub_resource type="Gradient" id="Gradient_3gx7t"]
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+offsets = PackedFloat32Array(0, 0.790909, 1)
+colors = PackedColorArray(1, 1, 0, 1, 0.118096, 0.118097, 0, 0.390909, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_abml3"]
 gradient = SubResource("Gradient_3gx7t")
@@ -33,7 +34,7 @@ angular_velocity_min = -20.0
 angular_velocity_max = 20.0
 gravity = Vector3(0, 4, 0)
 scale_curve = SubResource("CurveTexture_obha2")
-color = Color(1, 1, 0.392157, 1)
+color = Color(0.952941, 0.960784, 0.705882, 1)
 color_ramp = SubResource("GradientTexture1D_abml3")
 hue_variation_curve = SubResource("CurveTexture_kqmhc")
 turbulence_enabled = true
@@ -41,8 +42,10 @@ collision_mode = 2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xnp1i"]
 transparency = 1
-albedo_color = Color(1, 0.666667, 0.317647, 1)
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 0.717647, 0.317647, 0.643137)
 metallic_specular = 0.89
+roughness = 0.39
 grow_amount = 0.01
 
 [sub_resource type="BoxMesh" id="BoxMesh_dmu31"]
