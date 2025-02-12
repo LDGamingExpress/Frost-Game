@@ -982,21 +982,6 @@ transform = Transform3D(0.775, 0, 0, 0, 0.775, 0, 0, 0, 0.775, 6.79742, -1.20447
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Props/TreeGroup 7/DeadTree2/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_45l1v")
 
-[node name="Crystal" type="MeshInstance3D" parent="Props/TreeGroup 7"]
-transform = Transform3D(1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, 6.82648, 1.15002, 1.72095)
-mesh = ExtResource("14_tuos0")
-skeleton = NodePath("../../TreeGroup 5")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Props/TreeGroup 7/Crystal"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Props/TreeGroup 7/Crystal/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_bpxj5")
-
-[node name="OmniLight3D" type="OmniLight3D" parent="Props/TreeGroup 7/Crystal"]
-transform = Transform3D(1.66667, 0, 0, 0, 1.66667, 0, 0, 0, 1.66667, 0, 0.104602, 0)
-light_color = Color(0.52549, 1, 1, 1)
-light_specular = 4.056
-
 [node name="DeadTree3" parent="Props/TreeGroup 7" instance=ExtResource("15_5ebnh")]
 transform = Transform3D(0.635, 0, 2.98023e-08, 0, 0.635, 0, -2.98023e-08, 0, 0.635, -4.39926, 0.0102234, -6.84021)
 
@@ -1004,16 +989,6 @@ transform = Transform3D(0.635, 0, 2.98023e-08, 0, 0.635, 0, -2.98023e-08, 0, 0.6
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Props/TreeGroup 7/DeadTree3/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_hqb1r")
-
-[node name="SnowTree1Mesh" type="MeshInstance3D" parent="Props/TreeGroup 7"]
-transform = Transform3D(0.546, 0, 1.49012e-08, 0, 0.546, 0, -1.49012e-08, 0, 0.546, 10.5331, -2.18536, 11.1044)
-mesh = ExtResource("3_2epls")
-skeleton = NodePath("../../TreeGroup 2")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Props/TreeGroup 7/SnowTree1Mesh"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Props/TreeGroup 7/SnowTree1Mesh/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_6k1ev")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Props/TreeGroup 7"]
 
@@ -1055,21 +1030,6 @@ transform = Transform3D(0.775, 0, 0, 0, 0.775, 0, 0, 0, 0.775, 6.79742, -1.46265
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Props/TreeGroup 7/TreeGroup 7/DeadTree2/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_45l1v")
 
-[node name="Crystal" type="MeshInstance3D" parent="Props/TreeGroup 7/TreeGroup 7"]
-transform = Transform3D(1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, 6.86798, -1.21075, 1.47263)
-mesh = ExtResource("14_tuos0")
-skeleton = NodePath("../../TreeGroup 5")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Props/TreeGroup 7/TreeGroup 7/Crystal"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Props/TreeGroup 7/TreeGroup 7/Crystal/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_bpxj5")
-
-[node name="OmniLight3D" type="OmniLight3D" parent="Props/TreeGroup 7/TreeGroup 7/Crystal"]
-transform = Transform3D(1.66667, 0, 0, 0, 1.66667, 0, 0, 0, 1.66667, 0, 0.104602, 0)
-light_color = Color(0.52549, 1, 1, 1)
-light_specular = 4.056
-
 [node name="DeadTree3" parent="Props/TreeGroup 7/TreeGroup 7" instance=ExtResource("15_5ebnh")]
 transform = Transform3D(0.635, 0, 2.98023e-08, 0, 0.635, 0, -2.98023e-08, 0, 0.635, -4.39929, 4.39636, -6.84021)
 
@@ -1077,16 +1037,6 @@ transform = Transform3D(0.635, 0, 2.98023e-08, 0, 0.635, 0, -2.98023e-08, 0, 0.6
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Props/TreeGroup 7/TreeGroup 7/DeadTree3/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_hqb1r")
-
-[node name="SnowTree1Mesh" type="MeshInstance3D" parent="Props/TreeGroup 7/TreeGroup 7"]
-transform = Transform3D(-0.183157, -0.188515, 0.478573, 0, 0.508008, 0.20011, -0.514363, 0.0671271, -0.170412, 10.5331, -10.838, 11.1044)
-mesh = ExtResource("3_2epls")
-skeleton = NodePath("../../TreeGroup 2")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Props/TreeGroup 7/TreeGroup 7/SnowTree1Mesh"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Props/TreeGroup 7/TreeGroup 7/SnowTree1Mesh/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_6k1ev")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Props/TreeGroup 7/TreeGroup 7"]
 
