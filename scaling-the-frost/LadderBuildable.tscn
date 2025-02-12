@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://yu85p7jnes62"]
+[gd_scene load_steps=11 format=3 uid="uid://c2yjan1snbmgj"]
 
 [ext_resource type="Script" path="res://LadderBuildScript.gd" id="1_elguv"]
 [ext_resource type="ArrayMesh" uid="uid://xugolfvx2r1h" path="res://Models/WoodPile.res" id="1_niqfa"]

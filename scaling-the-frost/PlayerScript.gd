@@ -11,7 +11,7 @@ var Holding = false
 var HoldObj = null
 var JustDropped = false
 var JustRead = false
-var TEMPERATURE = 0
+var TEMPERATURE = -1
 var ALIVE = true
 var Walking = false
 
@@ -118,9 +118,13 @@ func _physics_process(delta: float) -> void:
 
 func temperature():
 	await get_tree().create_timer(1).timeout
-	Health -= (1/3) * (TEMPERATURE * -1)
-	if Health <= 0:
-		ALIVE = false
+	if TEMPERATURE >= 0:
+		if Health < 100:
+			Health += 1
+	else:
+		Health -= (1/3) * (TEMPERATURE * -1)
+		if Health <= 0:
+			ALIVE = false
 		
 func ready():
 	temperature()

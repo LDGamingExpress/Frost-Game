@@ -19,8 +19,8 @@
 [ext_resource type="ArrayMesh" uid="uid://becx63oob6l3j" path="res://Models/Crystal.res" id="15_8pm03"]
 [ext_resource type="ArrayMesh" uid="uid://6jwrq5hatan1" path="res://Models/Crystal2.res" id="16_o7prs"]
 [ext_resource type="PackedScene" uid="uid://dbo8rvfkaerm1" path="res://Ladder.tscn" id="17_p6rfq"]
-[ext_resource type="ArrayMesh" uid="uid://d0xfqycv7r5xm" path="res://Models/Sign.res" id="19_dpw4s"]
-[ext_resource type="PackedScene" uid="uid://yu85p7jnes62" path="res://LadderBuildable.tscn" id="21_eguaj"]
+[ext_resource type="ArrayMesh" uid="uid://dfcoe6hc72sau" path="res://Models/Sign.res" id="19_dpw4s"]
+[ext_resource type="PackedScene" path="res://LadderBuildable.tscn" id="21_eguaj"]
 [ext_resource type="PackedScene" uid="uid://bg1prhe1i8fi1" path="res://Log.tscn" id="22_0sfd7"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_pknab"]
