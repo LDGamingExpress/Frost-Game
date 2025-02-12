@@ -1884,6 +1884,66 @@ transform = Transform3D(-0.236041, 0.214014, 3.16911, 0.687974, 2.34151, -1.4671
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Props/PixelRockWall9/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_3kr35")
 
+[node name="Note2" type="RigidBody3D" parent="Props" groups=["Notes"]]
+transform = Transform3D(0.337161, 0, 0.941447, 0, 1, 0, -0.941447, 0, 0.337161, -51.7497, 2.20287, -21.2798)
+metadata/Note = "Stay to the forest lest you desire death in the cold. \\nTrees provide shelter from the blizzard"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Props/Note2"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+mesh = ExtResource("10_hjyl2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Props/Note2"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_gtc6u")
+
+[node name="Note3" type="RigidBody3D" parent="Props" groups=["Notes"]]
+transform = Transform3D(0.337161, 0, 0.941447, 0, 1, 0, -0.941447, 0, 0.337161, 54.4998, -3.04079, -22.2576)
+metadata/Note = "Febuary 4th, 1809 \\nAfter the invasion, I heard the Baron commissioned \\nhis men to guard him atop the mountain. \\nEveryone is fleeing somehow. \\nI saw a couple of starving peasants stack boxes \\nto make their way up the mountain, \\nbut I can't imagine they got far. \\n\\nSincerly, William"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Props/Note3"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+mesh = ExtResource("10_hjyl2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Props/Note3"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_gtc6u")
+
+[node name="Note4" type="RigidBody3D" parent="Props" groups=["Notes"]]
+transform = Transform3D(0.337161, 0, 0.941447, 0, 1, 0, -0.941447, 0, 0.337161, 259.006, 93.5362, -59.4451)
+metadata/Note = "This is the last refuge from the cold before the Baron \\nstomped out the rest of our mountain's residents. \\nOnce you leave here, you're on your own."
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Props/Note4"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+mesh = ExtResource("10_hjyl2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Props/Note4"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_gtc6u")
+
+[node name="Note5" type="RigidBody3D" parent="Props" groups=["Notes"]]
+transform = Transform3D(0.337161, 0, 0.941447, 0, 1, 0, -0.941447, 0, 0.337161, 213.079, 97.0704, -102.014)
+metadata/Note = "I keep hearing shrieks come from beyond the fog. \\nUnder normal circumstances it would send a shiver down my spine, \\nbut I'm already shaking so much. \\n\\nI don't know what they are, but I might start shrieking myself if they keep up."
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Props/Note5"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+mesh = ExtResource("10_hjyl2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Props/Note5"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_gtc6u")
+
+[node name="Note6" type="RigidBody3D" parent="Props" groups=["Notes"]]
+transform = Transform3D(0.337161, 0, 0.941447, 0, 1, 0, -0.941447, 0, 0.337161, 257.638, 149.389, -218.804)
+metadata/Note = "Congratulations! \\n\\nYou scaled the mountain. \\nUnfortunately your quest for revenge yielded no blood, but atleast you have this warmth."
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Props/Note6"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+mesh = ExtResource("10_hjyl2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Props/Note6"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_gtc6u")
+
 [node name="Torch" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.05, 0, 0, 0, 0.00235271, -0.0499446, 0, 0.0499446, 0.00235271, -276.098, 42.1306, 238.052)
 mesh = ExtResource("16_dm5ej")
