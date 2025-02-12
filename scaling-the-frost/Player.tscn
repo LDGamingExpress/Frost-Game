@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://PlayerScript.gd" id="1_373f7"]
 [ext_resource type="Script" path="res://PlayerCamera.gd" id="2_dmxii"]
-[ext_resource type="Theme" path="res://MainTheme.tres" id="3_df5y3"]
+[ext_resource type="Theme" uid="uid://di13i5mjc1r5e" path="res://MainTheme.tres" id="3_df5y3"]
 [ext_resource type="AudioStream" uid="uid://c8yojjel2unua" path="res://SFX/WindSounds.mp3" id="4_dtf86"]
 [ext_resource type="AudioStream" uid="uid://ouprhj6wc3f6" path="res://SFX/EditedSnowFootsteps.mp3" id="5_pxts6"]
 
