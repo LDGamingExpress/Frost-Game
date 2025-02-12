@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://cetyhqh542ot2"]
+[gd_scene load_steps=18 format=3 uid="uid://cetyhqh542ot2"]
 
 [ext_resource type="Script" path="res://PlayerScript.gd" id="1_373f7"]
 [ext_resource type="Script" path="res://PlayerCamera.gd" id="2_dmxii"]
 [ext_resource type="Theme" uid="uid://di13i5mjc1r5e" path="res://MainTheme.tres" id="3_df5y3"]
+[ext_resource type="Script" path="res://PauseMenuScript.gd" id="4_knygh"]
 [ext_resource type="AudioStream" uid="uid://b6branlca0mp2" path="res://SFX/Frosty_Mountain_Wind.wav" id="4_rbejc"]
 [ext_resource type="AudioStream" uid="uid://ouprhj6wc3f6" path="res://SFX/EditedSnowFootsteps.mp3" id="5_pxts6"]
 
@@ -22,6 +23,13 @@ corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kyprm"]
+bg_color = Color(0.310617, 0.310617, 0.310617, 0.756863)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
 
 [sub_resource type="Curve" id="Curve_a3yyi"]
 min_value = -360.0
@@ -101,6 +109,7 @@ grow_horizontal = 2
 grow_vertical = 0
 
 [node name="NoteLabel" type="Label" parent="Camera3D/CanvasLayer/VBoxContainer"]
+visible = false
 layout_mode = 2
 theme = ExtResource("3_df5y3")
 text = "Press E to Read Note"
@@ -141,6 +150,41 @@ Blah Blah
 Sincerely,
 Emily"
 
+[node name="PanelContainer" type="PanelContainer" parent="Camera3D/CanvasLayer"]
+process_mode = 3
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.5
+offset_top = -46.5
+offset_right = 43.5
+offset_bottom = 46.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_kyprm")
+script = ExtResource("4_knygh")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Camera3D/CanvasLayer/PanelContainer"]
+layout_mode = 2
+theme = ExtResource("3_df5y3")
+theme_override_constants/separation = 15
+
+[node name="Label" type="Label" parent="Camera3D/CanvasLayer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Paused"
+horizontal_alignment = 1
+
+[node name="ResumeButton" type="Button" parent="Camera3D/CanvasLayer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Resume"
+
+[node name="ExitButton" type="Button" parent="Camera3D/CanvasLayer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Exit Game"
+
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 amount = 80
 lifetime = 3.0
@@ -151,19 +195,22 @@ draw_pass_1 = SubResource("BoxMesh_g51bu")
 [node name="AudioListener3D" type="AudioListener3D" parent="."]
 
 [node name="BackgroundSFX" type="AudioStreamPlayer3D" parent="."]
+process_mode = 3
 stream = ExtResource("4_rbejc")
-volume_db = 18.286
+max_db = 6.0
 pitch_scale = 1.1
 autoplay = true
-panning_strength = 0.8
 
 [node name="Footsteps" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("5_pxts6")
-max_db = 0.714
+max_db = 0.1
 panning_strength = 1.4
+bus = &"Footsteps"
 
 [node name="FootRay" type="RayCast3D" parent="."]
 target_position = Vector3(0, -1.1, 0)
 
+[connection signal="pressed" from="Camera3D/CanvasLayer/PanelContainer/VBoxContainer/ResumeButton" to="Camera3D/CanvasLayer/PanelContainer" method="_on_resume_button_pressed"]
+[connection signal="pressed" from="Camera3D/CanvasLayer/PanelContainer/VBoxContainer/ExitButton" to="Camera3D/CanvasLayer/PanelContainer" method="_on_exit_button_pressed"]
 [connection signal="finished" from="BackgroundSFX" to="." method="_on_background_sfx_finished"]
 [connection signal="finished" from="Footsteps" to="." method="_on_footsteps_finished"]

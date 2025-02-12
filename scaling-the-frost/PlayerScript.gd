@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 
-var Health = 100
+var Health = 100.0
 const SPEED = 3.0
 const JUMP_VELOCITY = 4
 var push_force = 2.0
@@ -11,7 +11,7 @@ var Holding = false
 var HoldObj = null
 var JustDropped = false
 var JustRead = false
-var TEMPERATURE = -1
+var TEMPERATURE = -1.0
 var ALIVE = true
 var Walking = false
 
@@ -122,15 +122,13 @@ func temperature():
 		if Health < 100:
 			Health += 1
 	else:
-		Health -= (1/3) * (TEMPERATURE * -1)
+		Health -= (0.3) * (TEMPERATURE * -1)
 		if Health <= 0:
 			ALIVE = false
-		
-func ready():
 	temperature()
-		
-		
 
+func _ready() -> void:
+	temperature()
 
 func _on_footsteps_finished() -> void:
 	if Walking == true:
