@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://PlayerScript.gd" id="1_373f7"]
 [ext_resource type="Script" path="res://PlayerCamera.gd" id="2_dmxii"]
 [ext_resource type="Theme" uid="uid://di13i5mjc1r5e" path="res://MainTheme.tres" id="3_df5y3"]
-[ext_resource type="AudioStream" uid="uid://c8yojjel2unua" path="res://SFX/WindSounds.mp3" id="4_dtf86"]
+[ext_resource type="AudioStream" uid="uid://b6branlca0mp2" path="res://SFX/Frosty_Mountain_Wind.wav" id="4_rbejc"]
 [ext_resource type="AudioStream" uid="uid://ouprhj6wc3f6" path="res://SFX/EditedSnowFootsteps.mp3" id="5_pxts6"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hj2g2"]
@@ -151,7 +151,8 @@ draw_pass_1 = SubResource("BoxMesh_g51bu")
 [node name="AudioListener3D" type="AudioListener3D" parent="."]
 
 [node name="BackgroundSFX" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("4_dtf86")
+stream = ExtResource("4_rbejc")
+volume_db = 18.286
 pitch_scale = 1.1
 autoplay = true
 panning_strength = 0.8
