@@ -2,7 +2,7 @@ extends PanelContainer
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("Pause"):
+	if Input.is_action_just_pressed("Pause") and get_parent().get_parent().get_parent().ALIVE == true:
 		if get_tree().paused == false:
 			visible = true
 			get_tree().paused = true

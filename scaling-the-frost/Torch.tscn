@@ -1,7 +1,41 @@
-[gd_scene load_steps=13 format=3 uid="uid://c17bx1ykkxiqw"]
+[gd_scene load_steps=18 format=3 uid="uid://c17bx1ykkxiqw"]
 
 [ext_resource type="ArrayMesh" uid="uid://dr0xq2c21vk57" path="res://Models/Torch.res" id="1_qdwov"]
 [ext_resource type="Script" path="res://TorchDetecter.gd" id="2_do0qo"]
+
+[sub_resource type="Curve" id="Curve_1syd8"]
+_data = [Vector2(0, 0.725275), 0.0, 4.04396, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_nbrq8"]
+curve = SubResource("Curve_1syd8")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_m8lf3"]
+particle_flag_rotate_y = true
+angle_min = -354.5
+angle_max = 288.0
+direction = Vector3(0, 1, 0)
+initial_velocity_max = 4.0
+angular_velocity_min = -1.60933e-05
+angular_velocity_max = 3.99998
+orbit_velocity_min = 9.49949e-08
+orbit_velocity_max = 1.0
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -2.23517e-06
+radial_accel_max = 0.999998
+tangential_accel_min = -2.23517e-06
+tangential_accel_max = 0.999998
+scale_curve = SubResource("CurveTexture_nbrq8")
+hue_variation_min = -0.22
+hue_variation_max = 0.46
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y2cjg"]
+transparency = 1
+albedo_color = Color(1, 1, 0, 0.521569)
+
+[sub_resource type="BoxMesh" id="BoxMesh_5i6e7"]
+material = SubResource("StandardMaterial3D_y2cjg")
+size = Vector3(0.05, 0.05, 0.05)
 
 [sub_resource type="Gradient" id="Gradient_3gx7t"]
 offsets = PackedFloat32Array(0, 0.790909, 1)
@@ -54,10 +88,17 @@ material = SubResource("StandardMaterial3D_xnp1i")
 size = Vector3(0.05, 0.05, 0.05)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_tyyl2"]
+radius = 0.35
 
 [node name="Torch" type="MeshInstance3D"]
 transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
 mesh = ExtResource("1_qdwov")
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.50981, 0)
+lifetime = 0.3
+process_material = SubResource("ParticleProcessMaterial_m8lf3")
+draw_pass_1 = SubResource("BoxMesh_5i6e7")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1.78423, 0, 0, 0, 1, 0, 3.47559, 0)
@@ -77,3 +118,6 @@ script = ExtResource("2_do0qo")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TorchArea"]
 transform = Transform3D(200, 0, 0, 0, 200, 0, 0, 0, 200, 0, 0, 0)
 shape = SubResource("SphereShape3D_tyyl2")
+
+[connection signal="body_entered" from="TorchArea" to="TorchArea" method="_on_body_entered"]
+[connection signal="body_exited" from="TorchArea" to="TorchArea" method="_on_body_exited"]

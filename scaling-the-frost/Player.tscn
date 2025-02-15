@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cetyhqh542ot2"]
+[gd_scene load_steps=22 format=3 uid="uid://cetyhqh542ot2"]
 
 [ext_resource type="Script" path="res://PlayerScript.gd" id="1_373f7"]
 [ext_resource type="Script" path="res://PlayerCamera.gd" id="2_dmxii"]
@@ -6,10 +6,14 @@
 [ext_resource type="Script" path="res://PauseMenuScript.gd" id="4_knygh"]
 [ext_resource type="AudioStream" uid="uid://b6branlca0mp2" path="res://SFX/Frosty_Mountain_Wind.wav" id="4_rbejc"]
 [ext_resource type="AudioStream" uid="uid://ouprhj6wc3f6" path="res://SFX/EditedSnowFootsteps.mp3" id="5_pxts6"]
+[ext_resource type="Texture2D" uid="uid://bimfny2wo5xbb" path="res://Textures/FrostyGameScreen.png" id="5_txctt"]
+[ext_resource type="Script" path="res://restart_button.gd" id="6_oc47n"]
+[ext_resource type="Script" path="res://quit_button.gd" id="7_q3pwn"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hj2g2"]
+margin = 0.08
 radius = 0.25
-height = 1.91036
+height = 1.7
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wblqj"]
 bg_color = Color(0.942823, 0.942823, 0.942823, 1)
@@ -30,6 +34,19 @@ corner_radius_top_left = 16
 corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nqcb6"]
+bg_color = Color(0.6, 0.6, 0.6, 0.388235)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.8, 0.8, 0.8, 0.305882)
+border_blend = true
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
 
 [sub_resource type="Curve" id="Curve_a3yyi"]
 min_value = -360.0
@@ -150,6 +167,22 @@ Blah Blah
 Sincerely,
 Emily"
 
+[node name="TextureRect" type="TextureRect" parent="Camera3D/CanvasLayer"]
+self_modulate = Color(1, 1, 1, 0)
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -90.0
+offset_right = 160.0
+offset_bottom = 90.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_txctt")
+
 [node name="PanelContainer" type="PanelContainer" parent="Camera3D/CanvasLayer"]
 process_mode = 3
 visible = false
@@ -158,10 +191,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -43.5
-offset_top = -46.5
-offset_right = 43.5
-offset_bottom = 46.5
+offset_left = -99.0
+offset_top = -95.0
+offset_right = 99.0
+offset_bottom = 95.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_kyprm")
@@ -178,16 +211,96 @@ text = "Paused"
 horizontal_alignment = 1
 
 [node name="ResumeButton" type="Button" parent="Camera3D/CanvasLayer/PanelContainer/VBoxContainer"]
+process_mode = 3
 layout_mode = 2
+mouse_default_cursor_shape = 2
 text = "Resume"
 
 [node name="ExitButton" type="Button" parent="Camera3D/CanvasLayer/PanelContainer/VBoxContainer"]
+process_mode = 3
 layout_mode = 2
+mouse_default_cursor_shape = 2
 text = "Exit Game"
+
+[node name="PanelContainer2" type="PanelContainer" parent="Camera3D/CanvasLayer"]
+process_mode = 3
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_df5y3")
+theme_override_styles/panel = SubResource("StyleBoxFlat_nqcb6")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Camera3D/CanvasLayer/PanelContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Camera3D/CanvasLayer/PanelContainer2/VBoxContainer"]
+layout_mode = 2
+text = "You Died From Frostbite!"
+
+[node name="RestartButton" type="Button" parent="Camera3D/CanvasLayer/PanelContainer2/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "Restart"
+script = ExtResource("6_oc47n")
+
+[node name="QuitButton" type="Button" parent="Camera3D/CanvasLayer/PanelContainer2/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "Quit"
+script = ExtResource("7_q3pwn")
+
+[node name="PanelContainer3" type="PanelContainer" parent="Camera3D/CanvasLayer"]
+process_mode = 3
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_df5y3")
+theme_override_styles/panel = SubResource("StyleBoxFlat_nqcb6")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Camera3D/CanvasLayer/PanelContainer3"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Camera3D/CanvasLayer/PanelContainer3/VBoxContainer"]
+layout_mode = 2
+text = "You win!
+You have reached the staff
+ and taken control of it to
+end the blizzard!"
+horizontal_alignment = 1
+
+[node name="RestartButton" type="Button" parent="Camera3D/CanvasLayer/PanelContainer3/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "Restart"
+script = ExtResource("6_oc47n")
+
+[node name="QuitButton" type="Button" parent="Camera3D/CanvasLayer/PanelContainer3/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "Quit"
+script = ExtResource("7_q3pwn")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 amount = 80
-lifetime = 3.0
+lifetime = 2.5
 randomness = 0.17
 process_material = SubResource("ParticleProcessMaterial_b6gup")
 draw_pass_1 = SubResource("BoxMesh_g51bu")
@@ -206,11 +319,16 @@ stream = ExtResource("5_pxts6")
 max_db = 0.1
 panning_strength = 1.4
 bus = &"Footsteps"
+parameters/looping = true
 
 [node name="FootRay" type="RayCast3D" parent="."]
-target_position = Vector3(0, -1.1, 0)
+target_position = Vector3(0, -1.15, 0)
 
 [connection signal="pressed" from="Camera3D/CanvasLayer/PanelContainer/VBoxContainer/ResumeButton" to="Camera3D/CanvasLayer/PanelContainer" method="_on_resume_button_pressed"]
 [connection signal="pressed" from="Camera3D/CanvasLayer/PanelContainer/VBoxContainer/ExitButton" to="Camera3D/CanvasLayer/PanelContainer" method="_on_exit_button_pressed"]
+[connection signal="pressed" from="Camera3D/CanvasLayer/PanelContainer2/VBoxContainer/RestartButton" to="Camera3D/CanvasLayer/PanelContainer2/VBoxContainer/RestartButton" method="_on_pressed"]
+[connection signal="pressed" from="Camera3D/CanvasLayer/PanelContainer2/VBoxContainer/QuitButton" to="Camera3D/CanvasLayer/PanelContainer2/VBoxContainer/QuitButton" method="_on_pressed"]
+[connection signal="pressed" from="Camera3D/CanvasLayer/PanelContainer3/VBoxContainer/RestartButton" to="Camera3D/CanvasLayer/PanelContainer3/VBoxContainer/RestartButton" method="_on_pressed"]
+[connection signal="pressed" from="Camera3D/CanvasLayer/PanelContainer3/VBoxContainer/QuitButton" to="Camera3D/CanvasLayer/PanelContainer3/VBoxContainer/QuitButton" method="_on_pressed"]
 [connection signal="finished" from="BackgroundSFX" to="." method="_on_background_sfx_finished"]
 [connection signal="finished" from="Footsteps" to="." method="_on_footsteps_finished"]

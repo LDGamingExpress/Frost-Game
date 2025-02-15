@@ -14,6 +14,7 @@ var JustRead = false
 var TEMPERATURE = -1.0
 var ALIVE = true
 var Walking = false
+var Torches = 0
 
 func _input(event): # Checks for input
 	if event is InputEventMouseMotion: # Checks if the input is the mouse moving
@@ -103,10 +104,15 @@ func _physics_process(delta: float) -> void:
 		
 	if (abs(velocity.x) > 0 or abs(velocity.z) > 0) and $FootRay.is_colliding():
 		Walking = true
+		#print(Time.get_time_dict_from_system())
+		#print("Walking")
 		if $Footsteps.playing != true:
+			#print(Time.get_time_dict_from_system())
+			#print("Walking")
 			$Footsteps.play()
 	else:
 		Walking = false
+		$Footsteps.stop()
 		$Footsteps.playing = false
 	move_and_slide()
 	for i in get_slide_collision_count():
@@ -118,16 +124,29 @@ func _physics_process(delta: float) -> void:
 
 func temperature():
 	await get_tree().create_timer(1).timeout
+	if Torches >= 1:
+		TEMPERATURE = 30
+	else:
+		TEMPERATURE = -1
 	if TEMPERATURE >= 0:
 		if Health < 100:
-			Health += 1
+			Health += 2
 	else:
-		Health -= (0.3) * (TEMPERATURE * -1)
+		Health -= (0.6) * (TEMPERATURE * -1)
 		if Health <= 0:
 			ALIVE = false
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+			$Camera3D/CanvasLayer/PanelContainer.visible = false
+			$Camera3D/CanvasLayer/PanelContainer2.visible = true
+			get_tree().paused = true
+	$Camera3D/CanvasLayer/TextureRect.self_modulate.a = (1.0 - Health/100.0)
+	#print(Health)
 	temperature()
 
 func _ready() -> void:
+	var viewportWidth = DisplayServer.window_get_size().x
+	var viewportHeight = DisplayServer.window_get_size().y
+	$Camera3D/CanvasLayer/TextureRect.custom_minimum_size = Vector2(viewportWidth, viewportHeight)
 	temperature()
 
 func _on_footsteps_finished() -> void:
@@ -137,3 +156,10 @@ func _on_footsteps_finished() -> void:
 
 func _on_background_sfx_finished() -> void:
 	$BackgroundSFX.play()
+	
+func Win():
+	ALIVE = false
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	$Camera3D/CanvasLayer/PanelContainer.visible = false
+	$Camera3D/CanvasLayer/PanelContainer3.visible = true
+	get_tree().paused = true
