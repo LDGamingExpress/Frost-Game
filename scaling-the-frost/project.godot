@@ -11,9 +11,10 @@ config_version=5
 [application]
 
 config/name="Scaling the Frost"
+config/description="A mysterious blizzard has overtaken the region! Scale a mountain to stop it at its source!"
 run/main_scene="res://MainGame.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://Textures/FrostGameIcon.png"
 
 [display]
 
